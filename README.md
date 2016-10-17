@@ -18,7 +18,7 @@ VueJS directive for [Trumbowyg](http://alex-d.github.io/Trumbowyg/) editor.
 
 # Usage
 
-##Add module to your angular app
+##Add module to your vuejs app
 
 ```javascript
 require('/path/to/v-trumbowyg.js');
