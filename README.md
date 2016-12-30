@@ -1,13 +1,16 @@
 v-Trumbowyg
 ============
 
-VueJS directive for [Trumbowyg](http://alex-d.github.io/Trumbowyg/) editor.
+VueJS component for the [Trumbowyg](http://alex-d.github.io/Trumbowyg/) editor.
 
 # Requirements
 
-- VueJS 1.0 (2.0 not tested yet)
+- VueJS 2.0
 - jQuery
 - Trumbowyg
+- expose-loader
+- sass-loader
+- node-sass
 
 # Getting starting
 
@@ -18,27 +21,55 @@ VueJS directive for [Trumbowyg](http://alex-d.github.io/Trumbowyg/) editor.
 
 # Usage
 
-##Add module to your vuejs app
+> This has been tested only with the vue-template/webpack.
 
-```javascript
-require('/path/to/v-trumbowyg.js');
+In the main js file, you need to expose **jQuery** using the expose-loader, otherwise, **trumbowyg** won't be able to use jQuery.
+To do so, simply add `import 'expose?$!expose?jQuery!jquery'` on top your js entry file.
+
 ```
+<template>
+  <div id="app">
+    <trumbowyg :content="html" svgPath="/static/trumbowyg-icons.svg" @tbwchange="update"></trumbowyg>
+  </div>
+</template>
 
-##Use directive
+<script>
+import Trumbowyg from './components/Trumbowyg'
 
-```html
-<div v-trumbowyg="editorModel"></div>
-```
+export default {
+  name: 'app',
 
-##Setup model
+  components: {
+    Trumbowyg
+  },
 
-```javascript
-data() {
-	return {
-		editorModel: '',
-	};
+  data() {
+    return {
+      html: '<p>This is a test</p>',
+    };
+  },
+
+  methods: {
+    update(content) {
+      this.html = content;
+    }
+  }
 }
+</script>
 ```
+
+# Options
+
+- `content`: The content of the editor
+ - default: '' (empty String)
+- `language`: The locale to use for the editor
+ - default: en
+ - Possible values can be found in the Trumbowyg documentation (see link below)
+- `svgPath`: The path to the svg icons
+ - default: /ui/icons.svg
+For `vue-template/webpack` users, it's recommanded to copy the *icons.svg* file into the `/static` directory.
+And thus, set the svgPath to `/static/icons.svg`. Otherwise, webpack won't be able to load it.
+
 
 For more on Trumbowyg see [http://alex-d.github.io/Trumbowyg/documentation.html](http://alex-d.github.io/Trumbowyg/documentation.html)
 
