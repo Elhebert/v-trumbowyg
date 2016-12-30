@@ -5,7 +5,7 @@ VueJS component for the [Trumbowyg](http://alex-d.github.io/Trumbowyg/) editor.
 
 # Requirements
 
-- VueJS 2.0 (for VueJS 1, use [this version](https://github.com/Elhebert/v-trumbowyg/tree/vuejs-1))
+- VueJS 2.0 (for VueJS 1, use [this directive](https://github.com/Elhebert/v-trumbowyg/tree/vuejs-1))
 - jQuery
 - Trumbowyg
 - expose-loader
